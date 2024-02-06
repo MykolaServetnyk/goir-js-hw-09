@@ -1,0 +1,2 @@
+import"./assets/index-f79ce2e0.js";const a=document.querySelector(".feedback-form"),s="feedback-form-state",o=a.elements;function r(){const e=o.email.value.trim(),t=o.message.value.trim();return{email:e,message:t}}const m=localStorage.getItem(s);if(m){const{email:e,message:t}=JSON.parse(m);o.email.value=e||"",o.message.value=t||""}a.addEventListener("input",e=>{const t=r();localStorage.setItem(s,JSON.stringify(t))});a.addEventListener("submit",e=>{e.preventDefault(),console.log(r()),localStorage.removeItem(s),a.reset()});
+//# sourceMappingURL=commonHelpers2.js.map
