@@ -13,6 +13,25 @@ function getFormData() {
     };
 }
 
+function isFormDataValid(formData) {
+    return formData.email && formData.message;
+}
+
+function handleSubmit(evt) {
+    evt.preventDefault();
+
+    const formData = getFormData();
+
+    if (isFormDataValid(formData)) {
+        console.log(formData);
+
+        localStorage.removeItem(localStorageKey);
+        feedbackForm.reset();
+    } else {
+        return
+    }
+}
+
 const savedState = localStorage.getItem(localStorageKey);
 if (savedState) {
     const { email, message } = JSON.parse(savedState);
@@ -22,16 +41,7 @@ if (savedState) {
 
 feedbackForm.addEventListener("input", (evt) => {
     const formData = getFormData();
-
     localStorage.setItem(localStorageKey, JSON.stringify(formData));
-
 });
 
-feedbackForm.addEventListener("submit", (evt) => {
-    evt.preventDefault();
-
-    console.log(getFormData());
-
-    localStorage.removeItem(localStorageKey);
-    feedbackForm.reset();
-});
+feedbackForm.addEventListener("submit", handleSubmit);
